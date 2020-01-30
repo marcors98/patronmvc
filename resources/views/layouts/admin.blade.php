@@ -96,13 +96,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/tables/simple.html" class="nav-link">
+                <a href="{{route('noticias.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Lista</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
+                <a href="{{route('noticias.create ')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Nueva noticia</p>
                 </a>
