@@ -1,53 +1,56 @@
 @extends('layouts.admin')
 
-@section('titulo','Administración | Título')
-@section('titulo2','Lista de noticias')
+@section('titulo', 'Administración | Crear noticia')
+@section('titulo2', 'Noticias')
 
 @section('breadcrumbs')
 @endsection
 
 @section('contenido')
+
+
+<a class="btn btn-primary btn-sm" 
+    style="margin-left: 8px; margin-bottom: 15px;" 
+    href="{{ route('noticias.index') }}">
+    
+    <i class="fas fa-arrow-left"></i> 
+    Volver a lista de noticias</a>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <div class="card-header">
-                <h3 class="card-title">Crear Noticia</h3>
-            </div>
-            <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Noticia</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <!-- Aquí van las noticis -->
-                    @foreach($noticias as $noticia)
-                        <tr>
-                            <td>{{$noticia->titulo}}</td>
-                            <td>
-                                <button class="btn btn-primary">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="btn btn-primary">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn btn-danger">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Crear noticia</h3>
+                </div>
+                <div class="card-body">
+
+                    <form method="POST" action="{{ route('noticias.store') }}">
+
+                        @csrf
+                        <div class="form-group">
+                            <label>Titulo</label>
+                            <input type="text" name="txtTitulo" class="form-control"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Cuerpo</label>
+                            <textarea name="txtCuerpo" ID="" cols="30" rows="10" class="form-control"></textarea>
+                        </div>
+
+                        <div class="form-group"> 
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                    
+                </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
 
-@section('scripts')
-@endsection
-
 @section('estilos')
+@endsection
+@section('scripts')
 @endsection

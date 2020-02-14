@@ -8,4 +8,5 @@ class Noticia extends Model
 {
     protected $table = 'noticias';
     public $timestamps = false;
+    protected $primaryKey = 'ID';
 }

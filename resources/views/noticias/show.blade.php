@@ -7,7 +7,6 @@
     <title>Noticias | {{ $noticia->titulo }}</title>
 </head>
 <body>
-    <!-- <?php echo ""; ?> -->
     <h1>{{ $noticia->titulo }}</h1>
     <p>{{ $noticia->cuerpo }}</p>
 </body>

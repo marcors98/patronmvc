@@ -1,14 +1,12 @@
 @extends('layouts.admin')
 
 @section('titulo', 'Administración | Dashboard')
-@section('titulo2', 'Noticias')
+@section('titulo2', 'Usuarios')
 
 @section('breadcrumbs')
 @endsection
 
 @section('contenido')
-
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -31,38 +29,40 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Lista de noticias</h3>
+                    <h3 class="card-title">Lista de usuarios</h3>
                 </div>
                 <div class="card-body">
                 
-                    <a href="{{ route('noticias.create') }}" class="btn btn-primary">
-                        <i class="fas fa-plus"> Agregar noticia</i>
+                    <a href="{{ route('usuarios.create') }}" class="btn btn-primary">
+                        <i class="fas fa-plus"> Agregar usuario</i>
                     </a>
 
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Noticia</th>
+                                <th>Usuario</th>
+                                <th>Correo</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Aquí van las noticias xd -->
-                            @foreach($noticias as $noticia)
+                            <!-- Aquí van los usuarios xd -->
+                            @foreach($usuarios as $usuario)
                                 <tr>
-                                    <td>{{ $noticia->titulo }}</td>
+                                    <td>{{ $usuario->name }}</td>
+                                    <td>{{ $usuario->email }}</td>
                                     <td>
-                                        <a href="{{ route('noticias.show', $noticia->ID) }}" class="btn btn-primary">
+                                        <a href="{{ route('usuarios.show', $usuario->id) }}" class="btn btn-primary">
                                             <i class="fas fa-eye"></i>
                                         </a>
 
-                                        <a href="{{ route('noticias.edit', $noticia->ID) }}" class="btn btn-primary">
+                                        <a href="{{ route('usuarios.edit', $usuario->id) }}" class="btn btn-primary">
                                             <i class="fas fa-edit"></i>
                                         </a>
 
                                         @csrf
                                         @method('DELETE')
-                                        <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$noticia->ID}})" 
+                                        <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$usuario->id}})" 
                                             data-target="#DeleteModal" class="btn btn-danger"><i class="fas fa-times"></i></a>
 
                                     </td>
@@ -77,12 +77,12 @@
     </div>
 </div>
 
-<div class="modal fade" ID="DeleteModal">
+<div class="modal fade" id="DeleteModal">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="" ID="deleteForm" method="post">
+            <form action="" id="deleteForm" method="post">
                 <div class="modal-header">
-                    <h4 class="modal-title">Eliminar Noticia</h4>
+                    <h4 class="modal-title">Eliminar Usuario</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -91,7 +91,7 @@
                 <div class="modal-body">
                     @csrf
                     @method('DELETE')
-                    <p class="text-center">¿Seguro que quieres eliminar la noticia: <b>"{{ $noticia->titulo }}"?</b></p>
+                    <p class="text-center">¿Seguro que quieres eliminar al usuario: <b>"{{ $usuario->name }}"?</b></p>
                 </div>
 
                 <div class="modal-footer justify-content-between">
@@ -105,18 +105,17 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
-
 @endsection
 
 @section('estilos')
 @endsection
 @section('scripts')
 <script type="text/javascript">
-    function deleteData(ID)
+    function deleteData(id)
     {
-        var ID = ID;
-        var url = '{{ route("noticias.destroy", ":ID") }}';
-        url = url.replace(':ID', ID);
+        var id = id;
+        var url = '{{ route("usuarios.destroy", ":id") }}';
+        url = url.replace(':id', id);
         $("#deleteForm").attr('action', url);
     }
     function formSubmit()

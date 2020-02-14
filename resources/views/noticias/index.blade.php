@@ -7,18 +7,16 @@
     <title>Noticias</title>
 </head>
 <body>
+    <!-- @php var_dump($noticias) @endphp -->
     <h1>Noticias</h1>
     <table>
         <thead>
-            <tr>
-                <th>Titulo</th>
-                <th>Acciones</th>
-            </tr>
+            <th>Titulo</th>
+            <th>Acciones</th>
         </thead>
         <tbody>
-            @foreach($noticias as $noticia)
+            @foreach ($noticias as $noticia)
                 <tr>
-                    
                     <td>{{$noticia->titulo}}</td>
                     <td>
                         <a href="{{route('noticias.show',$noticia->id)}}">Ver mas</a>
